@@ -1,0 +1,14 @@
+Car
+int id, string manufacturer, string model, int mileage
+
+Person - abstract
+int id, string login, string pass, string name, int age
+
+Driver
+list cars
+
+Admin
+
+Routes
+int id, string name, int length
+

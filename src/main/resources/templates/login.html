@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="flex flex-col justify-center items-center mt-20">
+    <p class="text-xl">Welcome!</p>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> Login: <input type="text" name="username" class="p-2 m-2 bg-stone-200 rounded-lg"/> </label></div>
+    <div><label> Password: <input type="password" name="password" class="p-2 m-2 bg-stone-200 rounded-lg"/> </label></div>
+    <div><input type="submit" value="Sign In" class="p-2 m-2 bg-gray-100 rounded-lg"/></div>
+</form>
+</div>
+</body>
+</html>

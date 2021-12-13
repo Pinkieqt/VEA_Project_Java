@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Driver dashboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<div class="flex flex-col justify-center items-center mt-20 mb-20">
+  <p class="text-3xl">Driver dashboard</p>
+<a href="/logout" th:href="@{/logout}" class="p-2 m-2 bg-stone-200 rounded-lg">Logout</a>
+
+
+<!-- Drivers -->
+<div th:switch="${drivers}">
+  <h2  class="text-2xl font-bold mb-2 mt-4">Drivers</h2>
+  <h2 th:case="null">No drivers yet!</h2>
+  <div th:case="*">
+    <table class="table-auto w-64 text-center border border-gray-200 mt-2 divide-y divide-gray-300 ">
+      <thead class="bg-gray-50">
+      <tr class="whitespace-nowrap">
+        <th class="px-2 py-1">DriverID</th>
+        <th class="px-2 py-1">Login</th>
+        <th class="px-2 py-1">Name</th>
+        <th class="px-2 py-1">Age</th>
+        <th class="px-2 py-1">Owned cars</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300 ">
+      <tr th:each="driver : ${drivers}"class="whitespace-nowrap">
+        <td class="px-2 py-1" th:text="${driver.id}"></td>
+        <td class="px-2 py-1" th:text="${driver.login}"></td>
+        <td class="px-2 py-1" th:text="${driver.name}"></td>
+        <td class="px-2 py-1" th:text="${driver.age}"></td>
+        <td class="px-2 py-1" th:text="${driver.cars.size()}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Cars -->
+<div th:switch="${cars}">
+  <h2  class="text-2xl font-bold mb-2 mt-4">Cars</h2>
+  <h2 th:case="null">No cars yet!</h2>
+  <div th:case="*">
+    <table class="table-auto w-64 text-center border border-gray-200 mt-2 divide-y divide-gray-300 ">
+      <thead class="bg-gray-50">
+      <tr class="whitespace-nowrap">
+        <th class="px-2 py-1">CarID</th>
+        <th class="px-2 py-1">Manufacturer</th>
+        <th class="px-2 py-1">Model</th>
+        <th class="px-2 py-1">Mileage</th>
+        <th class="px-2 py-1">Owner</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300 ">
+      <tr th:each="car : ${cars}"class="whitespace-nowrap">
+        <td  class="px-2 py-1"th:text="${car.id}"></td>
+        <td  class="px-2 py-1"th:text="${car.manufacturer}"></td>
+        <td  class="px-2 py-1"th:text="${car.model}"></td>
+        <td  class="px-2 py-1"th:text="${car.mileage}"></td>
+        <td class="px-2 py-1" th:text="${car.owner.name}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Routes -->
+<div th:switch="${routes}">
+  <h2  class="text-2xl font-bold mb-2 mt-4">Routes</h2>
+  <h2 th:case="null">No routes yet!</h2>
+  <div th:case="*">
+    <table class="table-auto w-64 text-center border border-gray-200 mt-2 divide-y divide-gray-300 ">
+      <thead class="bg-gray-50">
+      <tr class="whitespace-nowrap">
+        <th class="px-2 py-1">RouteID</th>
+        <th class="px-2 py-1">Name</th>
+        <th class="px-2 py-1">Length</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300 ">
+      <tr th:each="route : ${routes}"class="whitespace-nowrap">
+        <td  class="px-2 py-1"th:text="${route.id}"></td>
+        <td  class="px-2 py-1"th:text="${route.name}"></td>
+        <td  class="px-2 py-1"th:text="${route.length}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+</div>
+</body>
+
+</html>

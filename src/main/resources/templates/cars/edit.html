@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit car</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<div class="flex flex-col justify-center items-center mt-20 mb-20">
+    <p class="text-3xl mb-10">Edit car</p>
+
+
+<form action="#" th:action="@{/updatecar/{id}(id=${car.id})}" th:object="${car}" method="post">
+    <label for="manufacturer">Manufacturer</label>
+    <input type="text" th:field="*{manufacturer}" id="manufacturer" placeholder="Manufacturer"class="p-2 m-2 bg-stone-200 rounded-lg">
+    <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"></span>
+
+    <label for="model">Model</label>
+    <input type="text" th:field="*{model}" id="model" placeholder="Model"class="p-2 m-2 bg-stone-200 rounded-lg">
+    <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+
+    <label for="mileage">Mileage</label>
+    <input type="number" th:field="*{mileage}" id="mileage" placeholder="Mileage"class="p-2 m-2 bg-stone-200 rounded-lg">
+    <span th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"></span>
+
+    <label for="personId">Owner</label>
+    <select name="persons" id="personId" th:field="*{ownerId}"class="p-2 m-2 bg-stone-200 rounded-lg">
+        <option th:each="person : ${persons}" th:value="${person.id}" th:text="${person.name}"></option>
+    </select>
+
+    <input type="submit" value="Edit car"class="p-2 m-2 bg-gray-100 rounded-lg">
+</form>
+</div>
+</body>
+
+</html>

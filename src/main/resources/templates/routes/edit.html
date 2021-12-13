@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit route</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+<div class="flex flex-col justify-center items-center mt-20 mb-20">
+    <p class="text-3xl mb-10">Edit route</p>
+
+
+<form action="#" th:action="@{/updateroute/{id}(id=${route.id})}" th:object="${route}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name"class="p-2 m-2 bg-stone-200 rounded-lg">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+    <label for="length">Length</label>
+    <input type="number" th:field="*{length}" id="length" placeholder="Length"class="p-2 m-2 bg-stone-200 rounded-lg">
+    <span th:if="${#fields.hasErrors('length')}" th:errors="*{length}"></span>
+
+    <input type="submit" value="Edit route"class="p-2 m-2 bg-gray-100 rounded-lg">
+</form>
+</div>
+</body>
+
+</html>
